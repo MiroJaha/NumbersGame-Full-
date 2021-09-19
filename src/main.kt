@@ -6,33 +6,36 @@ fun main(){
 
     println("\nGuess The Number Between 0 and 10:\n ")
 
-    try {
+
         var count=0
-        for (i in 1..3) {
+        while (count<3) {
             print("Please Enter The Guessing Number or (quiet) to Exit: ")
             var guess = readLine()
-            if(guess=="quiet") {
+            if (guess == "quiet") {
                 println("You Are Out!!\n")
                 break
             }
-            when (guess!!.toInt()) {
-                number -> {
-                    println("You Got it!!\n")
-                    break
+            try {
+                when (guess!!.toInt()) {
+                    number -> {
+                        println("You Got it!!\n")
+                        break
+                    }
+                    else -> {
+                        println("Wrong Guess.\n")
+                        count++
+                    }
                 }
-                else -> {
-                    println("Wrong Guess.\n")
-                    count++
-                }
+            }
+            catch(e: Exception){
+                println("Please Enter a Number\n")
             }
         }
 
         println("You Failed $count times")
         println("The Correct answer is: $number")
-    }
-    catch(e: Exception){
-        println("Please Enter a Number")
-    }
+
+
 
     println("Game Over!")
 
